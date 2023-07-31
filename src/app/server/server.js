@@ -3,6 +3,11 @@ const app = express();
 
 app.set("port", 3000);
 
+var mode = process.env.NODE_ENV;
+const key = process.env.STEAM_KEY;
+const matchToken = process.env.MATCH_TOKEN;
+const baseUrl = "https://api.steampowered.com/";
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -13,13 +18,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Test message" });
+  res.json({
+    message: "Test Boi",
+  });
 });
 
 app.listen(app.get("port"), () => {
-  console.log(
-    "Express started on http://localhost:" +
-      app.get("port") +
-      "; press Ctrl-C to terminate."
-  );
+  console.log("Express started on http://localhost:" + app.get("port"));
 });
