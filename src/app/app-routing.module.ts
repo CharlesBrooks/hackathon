@@ -5,12 +5,12 @@ import { CSStatsContainer } from './cs-stats-container/cs-stats-container.compon
 const routes: Routes = [
   {
     path: '',
-    component: CSStatsContainer
-  }
+    component: CSStatsContainer,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
