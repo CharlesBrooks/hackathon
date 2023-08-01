@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class CSStatsContainer implements OnInit {
   message$!: Observable<Object>;
   constructor(private readonly service: CSStatsContainerService) {}
+
   ngOnInit(): void {
     this.message$ = this.service.getMessage();
   }

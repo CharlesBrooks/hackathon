@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CSStatsContainerService {
+  message$!: Observable<Object>;
   constructor(private readonly clientService: CSStatsClientService) {}
 
   getMessage(): Observable<Object> {

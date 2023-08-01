@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HLTV } from 'hltv';
 
 @Component({
   selector: 'app-root',
