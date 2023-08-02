@@ -1,3 +1,63 @@
-<div>CS Stats Here</div>
+<div *ngIf="message$">
+  <dx-data-grid
+    id="dataGrid"
+    [allowColumnResizing]="true"
+    [allowColumnReordering]="true"
+    [dataSource]="naTeams"
+  >
+    <dxo-paging [pageSize]="25"> </dxo-paging>
+    <dxi-column dataField="name"></dxi-column>
+    <dxi-column
+      dataField="logo"
+      calculateDisplayValue=" "
+      [width]="75"
+      [allowFiltering]="false"
+      [allowSorting]="false"
+      cellTemplate="logotemplate"
+    ></dxi-column>
+    <dxi-column dataField="rank"> </dxi-column>
+    <dxi-column dataField="points"> </dxi-column>
+    <dxi-column dataField="place"></dxi-column>
+    <dxi-column dataField="change"></dxi-column>
+    <dxi-column
+      dataField="twitter"
+      calculateDisplayValue=" "
+      [width]="75"
+      [allowFiltering]="false"
+      [allowSorting]="false"
+      cellTemplate="twittertemplate"
+    ></dxi-column>
 
-<div>{{ message$ | async }}</div>
+    <div *dxTemplate="let data of 'logotemplate'">
+      <img
+        [src]="
+          data.value ?? 'https://www.hltv.org/img/static/team/placeholder.svg'
+        "
+      />
+    </div>
+
+    <div *dxTemplate="let data of 'twittertemplate'">
+      <a href="data.value"
+        ><img
+          src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png"
+          style="width: 45px; height: 45px"
+      /></a>
+    </div>
+
+    <dxo-master-detail [enabled]="true" [template]="'masterDetail'">
+    </dxo-master-detail>
+    <div *dxTemplate="let team of 'masterDetail'">
+      <dx-data-grid
+        id="dataGrid"
+        [allowColumnResizing]="true"
+        [allowColumnReordering]="true"
+        [dataSource]="team.data.players"
+      >
+        <dxi-column dataField="name"></dxi-column>
+        <dxi-column dataField="type"></dxi-column>
+        <dxi-column dataField="timeOnTeam"></dxi-column>
+        <dxi-column dataField="mapsPlayed"></dxi-column>
+      </dx-data-grid>
+    </div>
+  </dx-data-grid>
+</div>

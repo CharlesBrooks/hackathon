@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Message } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class CSStatsClientService {
   constructor(private http: HttpClient) {}
 
-  getMessage(): Observable<Object> {
-    return this.http.get('http://localhost:3000');
+  getMessage(): Observable<Message> {
+    return this.http.get<Message>('http://localhost:3000');
   }
 }
