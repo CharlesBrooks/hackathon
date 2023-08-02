@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Message } from '../types';
+import { NA_TEAMS } from '../server/mockdata';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,14 @@ import { Message } from '../types';
 export class CSStatsClientService {
   constructor(private http: HttpClient) {}
 
-  getMessage(): Observable<Message> {
-    return this.http.get<Message>('http://localhost:3000');
+  getMessage(): Observable<any> {
+    return this.http.get('http://localhost:3000').pipe(
+      catchError((error) => {
+        console.error('An error occurred:', error);
+        return of({
+          teamData: { teams: NA_TEAMS },
+        });
+      })
+    );
   }
 }
