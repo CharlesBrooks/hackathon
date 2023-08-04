@@ -48,6 +48,7 @@
     <dxo-master-detail [enabled]="true" [template]="'masterDetail'">
     </dxo-master-detail>
     <div *dxTemplate="let team of 'masterDetail'">
+      <div>{{ team.data.name }} Players :</div>
       <dx-data-grid
         id="dataGrid"
         [allowColumnResizing]="true"
